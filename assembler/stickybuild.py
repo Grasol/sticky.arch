@@ -15,11 +15,11 @@ def main():
   exe_name = name + ".exe"
 
   command = [
-    (f"gcc -c stickyasm.c -o tmp_sticky_asm_1.o -Wall -Wextra",
+    (f"gcc -c stickyasm.c -o tmp_sticky_asm_1.o -Wall -Wextra -O3",
       "compiling assembler...\n"),
-    (f"gcc -c {input_name} -o tmp_sticky_asm_2.o -Wall -Wextra",
+    (f"gcc -c {input_name} -o tmp_sticky_asm_2.o -Wall -Wextra -O3",
       "compiling your program...\n"),
-    (f"gcc tmp_sticky_asm_1.o tmp_sticky_asm_2.o -o {exe_name} -Wall -Wextra",
+    (f"gcc tmp_sticky_asm_1.o tmp_sticky_asm_2.o -o {exe_name} -Wall -Wextra -O3",
       "linking...\n"),
     (f"{exe_name} {output_name}", 
       f"running {exe_name}...\n")
