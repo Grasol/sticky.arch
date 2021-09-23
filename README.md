@@ -19,7 +19,7 @@ Pierwsze prace nad procesorem ogólnego przeznaczenia zaczeły się pod koniec 2
 Zainspirowany tymi pomysłami, zacząłem według nich projektować swoją konstrukcje.
 Jednak podczas tworzenia kolejnych aspektów cpu, co raz bardziej rezygnowałem z pierwotnych założeń. Zastępywałem je innymi pomysłami.<br>
 Drugą inspiracją był [microcode 8086](https://www.reenigne.org/blog/8086-microcode-disassembled/). 
-A konkretniej: gdyby microcode był normalnym bytecode'm procesora, nie musiał by mieć dekodera.
+A konkretniej: gdyby microcode był natywnym kodem maszynowym procesora, nie musiał by mieć dekodera.
 Czy to założenie udało się spełnić? Z dzisiejszej perspektywy mogę powiedzieć, że nie...
 Natomiast takie (często bardzo wewnętrzne i proste) instrukcje trzeba jakoś zakodować. 
 Dlatego trzecią inspiracją był sposób kodowania instrukcji Intel Itanium. Lecz z tych pomysłów, po wielu zmianach i uproszczeniach nie wiele zostało.
