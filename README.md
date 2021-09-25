@@ -2,18 +2,18 @@
 
 Projekt sticky.arch zakłada stworzenie procesora sticky.arch wraz z środowiskiem wykonywalnym.
 Elementy projektu znajdują się na FPGA, Arduino oraz na PC. Są nimi:
-- FPGA:
-  1. CPU
-  2. IO controller 
+- FPGA
+  - CPU
+  - IO controller 
 
-- Arduino:
-  1. Cache
+- Arduino
+  - Cache
   
-- PC:
-  1. RAM
-  2. Urządzenia podpięte do RAMu (np. prosty wyświetlacz tekstowy; klawiatura)
-  3. Assembler, debugger, itp.
-  
+- PC
+  - RAM
+  - Urządzenia podpięte do RAMu (np. prosty wyświetlacz tekstowy; klawiatura)
+  - Assembler, debugger, itp.
+![System](/s1.png)
 ## Procesor sticky.arch
 
 Pierwsze prace nad procesorem ogólnego przeznaczenia zaczeły się pod koniec 2020r, kiedy zaznajomiłem się z projektem [Mill Architecture](https://millcomputing.com/). 
@@ -35,6 +35,8 @@ Dlatego trzecią inspiracją był sposób kodowania instrukcji Intel Itanium. Le
 - 2-krokowy pipelining: FETCH -> EXECUTE (lecz pobieranie następnej instrukcji odbywa się po tym jak obecna się wykona)
 - Brak wsparcia dla operacji atomowych
 - Przerwania są na papierze, lecz obecnie nie są zaimplementowane
+
+![cpu_uarcg](/Untitled2.png)
 
 **Podstawowe środowisko wynonawcze**<br>
 Procesor nie ma żandego podziału na tryby, czy na poziomy uprzywilejowania. 
@@ -64,13 +66,23 @@ W procesorze jest kilka typów rejestrów:
 **Instrukcje**<br>
 Każda instrukcja składa się z 4 bajtów. 
 Dokładny opis ich kodowania znajduje się [tutaj](https://docs.google.com/spreadsheets/d/1010_0g59zPH0YjnZFvEePfx06E-xwZjjbiEDYnZvK1s/edit?usp=sharing).
-...
+TODO
 
 ## IO controller
-TODO
+IO controller znajduje się wraz z CPU na FPGA. 
+Umożliwia komunikacje, między CPU a ledami/przyciskami, jednocześnie wymieniać dane z Cachem, który znajduje się na Arduino.
+Transfer danych między IO a Cachem odbywa się przez SPI.
 
 ## Cache
-TODO
+Rozwiązanie, gdzie cache nie znajduje się na jednym układzie, na FPGA wraz z cpu było podyktowane ilością bloków logicznych, jakie moje FPGA posiada. 
+Nie wiedziałem ile zasobów tak naprawdę zajmie cały projekt. Dlatego podjołem decyzje, gdzie cache, będzie programem na arduino. 
+Jednocześnie arduino stanowi buffer komunikacyjny z PCtem. 
 
 ## Środowisko na PC
-TODO
+Według mnie, RAM jest najbardziej kontrowersyjną rzeczą w całym tym projekcie. 
+Ponieważ znajnduje się on na realnym komputerze x86. 
+Jest programem, napisanym w Pythonie, który tworzy bytearray wielkości 2<sup>24</sup>. 
+Natomiast ma to również swoje zalety. np: Łatwość w ładowaniu programów, czy mapowania pod RAM jakiś dodaków, np: Ekranu tekstowego, czy buffera klawiatury.<br>
+Oprócz tego projekt zakłada takie programy jak assembler, disassembler czy debugger, lecz owe aplikacje, są dopiero w tworzeniu.  
+
+
